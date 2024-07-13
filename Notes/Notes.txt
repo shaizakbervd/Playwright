@@ -1,0 +1,65 @@
+---- Features of Playwright -------
+
+1) free and open source
+2) multi-browser, multi-language (java, python, c#, ts, js)
+3) functional, api testing and visual testing
+4) built-in reports, ci/cd
+5) auto wait
+6) parallel testing
+7) built-in assertions
+8) multi-window and multi-tabs
+9) frames, shadow dom
+10) emulate mobile devices
+11) very fast
+12) powerfull tools like: codegen (generate tests by recording your actions), playwright inspector (inspect pages),
+trace viewer (capture information to investigate test failure)
+
+
+----- Install playwright ---------
+
+1) npm init playwright@latest (keep all other things as default)
+it will install playwright project which includes (playwright.config.js just like cypress config file and package.json files)
+
+------ Commands to Run the test file in playwright ------
+
+by default playwright 3 browser dalega chromium, webkit and firefox
+jo test tests ke folder ma honge wo sare run karega
+
+1) npx playwright test (runs the test in headless mode)
+2) npx playwright test --headed (runs the test in headed mode)
+3) npx playwright show-report (shows report in browser) 
+4) npx playwright test --project chromium => runs test in chromium browser
+5) npx playwright test --project webkit --project firefox => run tests in multiple browsers
+
+
+------- Creating testfile and run it -------
+
+- to write the test we have 2 options either write them in using on own or use codegen tool
+
+- to write the test on own first we need to import some libraries
+const {test, expect}=require("playwright/test") => test will generate test cases or functions and expect is used for assertion
+
+test will take 2 arguments one is the name of the test and second is the anonymos function
+
+test("Home page", ()=>{
+
+})
+
+ab inside the test we need to pass argument of page, page is the particular web page opened or the tab jo ke ek object ma ayega
+and this will be available in playwright context fixture file tu isko as a argument dedeing so it could be used
+Pages are isolated between tests due to fixtures.context
+
+The async keyword is used to define an asynchronous function, which allows you to use await to pause the execution of the function 
+until the promise is resolved, so async promise return krwayega and await make sure to wait for promise
+
+test("Home page", async async ({page})=>{
+
+})
+
+now i use await inside function and navigate to url by command of page provided of goto
+
+test("Home Page", async ({page})=>{
+
+    await page.goto("https://demoblaze.com/index.html");
+})
+
